@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Excluded>
+    <exclude>.git</exclude>
+    <exclude>About\Aerograss_South.png</exclude>
+    <exclude>About\Orchid_South.png</exclude>
+    <exclude>About\preview.pdn</exclude>
+    <exclude>CLAUDE.md</exclude>
+    <exclude>differences vivi human race.txt</exclude>
+    <exclude>Source</exclude>
+    <exclude>steam desc.txt</exclude>
+    <exclude>Todos.txt</exclude>
+    <exclude>Vanillafied Vivi.code-workspace</exclude>
+  </Excluded>
+</Configuration>
