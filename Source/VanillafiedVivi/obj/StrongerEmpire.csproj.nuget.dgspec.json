@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\StrongerEmpire\\StrongerEmpire.csproj": {}
+  },
+  "projects": {
+    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\StrongerEmpire\\StrongerEmpire.csproj": {
+      "restore": {
+        "projectUniqueName": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\StrongerEmpire\\StrongerEmpire.csproj",
+        "projectPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\StrongerEmpire\\StrongerEmpire.csproj",
+        "packagesPath": "C:\\Users\\mdeek\\.nuget\\packages\\",
+        "outputPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\StrongerEmpire\\obj\\",
+        "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mdeek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        }
+      }
+    }
+  }
+}

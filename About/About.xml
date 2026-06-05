@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Vanillafied Vivi</name>
+    <author>KahirDragoon</author>
+    <packageId>kahirDragoon.vanillafiedVivi</packageId>
+    <supportedVersions>
+        <li>1.6</li>
+    </supportedVersions>
+    <description>Removes the optical changes made to the vivi and the race specific appearel and uses normal clothes and genes instead.
+
+Content:
+
+Race / Pawns:
+- Vivi pawnkind race changed to Human for full visual and mod compatibility
+- Removed all Vivi-specific head types and hair defs; Vivis now use vanilla heads and hair
+- Apparel tags updated per pawnkind: Neolithic/Medieval for civilians, MedievalMilitary for guards, Royal/RoyalTier2 for royals (requires Royalty DLC)
+- Combat power rebalanced for guard, firefighter, sniper, and royal pawnkinds
+
+Xenotype (VV_Vivi):
+- Added vanilla genes: quick movement, heat tolerance, cold weakness, dull psychic ability, thin body type
+- Replaced weak melee penalty with terrible melee penalty (balance for metabolic efficiency)
+- Added custom genes: VVV_HoneyGatherer, VVV_CosmeticWings, VVV_CosmeticAntennae, VVV_ViviPhysiology
+
+Custom Genes:
+- VVV_HoneyGatherer: bonus stats for honey and magic plant gathering
+- VVV_CosmeticWings: cosmetic wings with Vivi flight animations (visual only, no true flight)
+- VVV_ViviPhysiology: royal Vivi egg-laying cycle (15-day), progress bar gizmo, forces female, enables Royal Jelly need
+- VVV_CreamMaker: marker gene that unlocks the Vivicream production recipe
+
+Apparel:
+- Removed all Vivi-specific apparel (female garments, hats, guard uniform/helmet, winter cape, guardian coat, children's wear)
+- Removed fake and bionic antenna/wing implants and their surgical recipes
+- Vivis now wear vanilla apparel (Neolithic and Medieval tags); the faction is medieval tech so consider adding a medieval clothing mod for more variety
+
+Architect Menu / Buildings:
+- Moved all Vivi buildings, furniture, floors, and traps into standard vanilla architect tabs (Production, Furniture, Misc, Security, Structure, Floors)
+- Removed the custom VV_Bulidings architect tab
+- FortifyHoneycombWall designator added to both Orders and Structure menus
+
+Faction / Culture:
+- VV_ViviFederation patched with proper backstory filters (settler, combat, firefighter, sniper)
+- Vivi culture updated to use vanilla short/long hair instead of Vivi-exclusive styles
+- RPEF race constraints removed from backstories and the VV_RoyalVivi hediff so they work on Human pawns
+
+Recipes / Research:
+- Vivicream production gated to pawns with VVV_CreamMaker gene instead of a race check
+- Vivi apparel research project removed (VV_Apparels); VV_AdvancedApparels prerequisites cleared
+
+Compatibility:
+- CompVivi and CompViviHolder added to the Human ThingDef so normalized Vivis can use the Everflower plant system
+- RPEF constraints removed from the VV_Vivi xenotype so it can be applied to Human pawns
+
+    </description>
+    <modDependencies>
+        <li>
+			<packageId>gguake.race.vivi</packageId>
+			<displayName>Vivi Race</displayName>
+            <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3241577976</steamWorkshopUrl>
+		</li>
+		<li>
+			<packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
+			<displayName>Vanilla Expanded Framework</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2023507013</steamWorkshopUrl>
+			<downloadUrl>https://github.com/Vanilla-Expanded/VanillaExpandedFramework</downloadUrl>
+		</li>
+    </modDependencies>
+    <loadAfter>
+        <li>gguake.race.vivi</li>
+        <li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+        <li>sarg.alphagenes</li>
+        <li>redmattis.bigsmall.core</li>
+        <li>neronix17.outland.genetics</li>
+    </loadAfter>
+</ModMetaData>

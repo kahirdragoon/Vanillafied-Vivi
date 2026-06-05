@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <!-- Inject egg-laying job into the colonist think tree, before JobGiver_Work.
+         JobGiver_VVVLayViviEgg gates itself to pawns with Gene_ViviPhysiology and
+         a ready egg (priority 0 for all other pawns, so this is a cheap no-op). -->
+    <Operation Class="PatchOperationInsert">
+        <xpath>Defs/ThinkTreeDef[defName="MainColonistBehaviorCore"]/thinkRoot/subNodes/li[1]/subNodes/li[@Class="JobGiver_Work"]</xpath>
+        <order>Prepend</order>
+        <value>
+            <li Class="VanillafiedVivi.JobGiver_VVVLayViviEgg" />
+        </value>
+    </Operation>
+</Patch>

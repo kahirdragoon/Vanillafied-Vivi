@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- PawnKind -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[@Name="ViviBase"]/race</xpath>
+    <value>
+      <race>Human</race>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[@Name="ViviBase"]/apparelTags</xpath>
+    <value>
+      <apparelTags>
+        <li>Neolithic</li>
+        <li>Medieval</li>
+      </apparelTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/PawnKindDef[defName="VV_PlayerVivi"]/apparelTags</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/PawnKindDef[defName="VV_PlayerRefugeeVivi" or defName="VV_RoyalViviEmpress" or defName="VV_RoyalViviLeader"]/apparelRequired</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="VV_RoyalViviEmpress" or defName="VV_RoyalViviLeader" or defName="VV_RoyalVivi" or defName="VV_ViviSniper"]/apparelTags</xpath>
+    <value>
+      <apparelTags>
+        <li>Neolithic</li>
+      </apparelTags>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="VV_RoyalViviEmpress" or defName="VV_RoyalViviLeader" or defName="VV_RoyalVivi" or defName="VV_RoyalViviTrader"]/combatPower</xpath>
+    <value>
+      <combatPower>100</combatPower>
+    </value>
+  </Operation>
+
+  
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="VV_PlayerRoyalVivi"]</xpath>
+    <value>
+      <apparelTags>
+        <li MayRequire="ludeon.rimworld.royalty">Royal</li>
+        <li MayRequire="ludeon.rimworld.royalty">RoyalTier2</li>
+      </apparelTags>
+    </value>
+  </Operation>
+  
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/PawnKindDef[defName="VV_RoyalViviEmpress" or defName="VV_RoyalViviLeader" or defName="VV_RoyalVivi" or defName="VV_RoyalViviTrader"]/apparelTags</xpath>
+    <value>
+      <li MayRequire="ludeon.rimworld.royalty">Royal</li>
+      <li MayRequire="ludeon.rimworld.royalty">RoyalTier2</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="VV_ViviGuard"]/apparelTags</xpath>
+    <value>
+      <apparelTags>
+        <li>MedievalMilitary</li>
+      </apparelTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/PawnKindDef[defName="VV_ViviFirefighter" or defName="VV_ViviSniper"]/apparelTags</xpath>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/PawnKindDef[defName="VV_ViviFirefighter" or defName="VV_ViviSniper" or defName="VV_ViviGuard"]/combatPower</xpath>
+    <value>
+      <combatPower>50</combatPower>
+    </value>
+  </Operation>
+
+
+  <!-- Backstory -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/BackstoryDef[@Name="VV_ViviBackstory"]/modExtensions/li[@Class="RPEF.ConstraintModExtension"]</xpath>
+  </Operation>
+
+  <!-- Faction -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/FactionDef[defName="VV_ViviFederation"]</xpath>
+    <value>
+      <backstoryFilters>
+        <li>
+          <categories>
+            <li>VV_SettlerBackstory</li>
+          </categories>
+          <commonality>1</commonality>
+        </li>
+        <li>
+          <categories>
+            <li>VV_CombatSettlerBackstory</li>
+          </categories>
+          <commonality>0.5</commonality>
+        </li>
+        <li>
+          <categories>
+            <li>VV_FirefighterBackstory</li>
+          </categories>
+          <commonality>0.3</commonality>
+        </li>
+        <li>
+          <categories>
+            <li>VV_SniperBackstory</li>
+          </categories>
+          <commonality>0.3</commonality>
+        </li>
+      </backstoryFilters>
+    </value>
+  </Operation>
+
+  <!-- Culture -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/CultureDef[defName="VV_ViviCulture"]/styleItemTags/li[tag="VV_Vivi"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/CultureDef[defName="VV_ViviCulture"]/styleItemTags</xpath>
+    <value>
+      <li>
+        <tag>HairShort</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+      <li>
+        <tag>HairLong</tag>
+        <baseWeight>1</baseWeight>
+        <weightFactor>1</weightFactor>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- Hediff: remove race constraint so VV_RoyalVivi can be applied to Human pawns -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/HediffDef[defName="VV_RoyalVivi"]/modExtensions/li[@Class="RPEF.ConstraintModExtension"]</xpath>
+  </Operation>
+
+  <!-- Xenotype -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/XenotypeDef[defName="VV_Vivi"]/modExtensions/li[@Class="RPEF.ConstraintModExtension"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/XenotypeDef[defName="VV_Vivi"]/genes</xpath>
+    <value>
+      <li>PsychicAbility_Dull</li>
+      <li>MoveSpeed_Quick</li>
+      <li>AptitudeTerrible_Melee</li>
+      <li>Body_Thin</li>
+      <li>Libido_Low</li>
+      <li>Pain_Extra</li>
+      <li>VVV_HoneyGatherer</li>
+      <li>VVV_CosmeticWings</li>
+      <li>VVV_CosmeticAntennae</li>
+      <li>VVV_ViviPhysiology</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/XenotypeDef[defName="VV_Vivi"]/genes/li[text()="AptitudePoor_Melee"]</xpath>
+  </Operation>
+
+  <!-- Hair -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/HairDef[@Name="ViviHairBase" or @ParentName="ViviHairBase"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/RPEF.ConstraintDef[defName="VV_PawnConstraint"]/constraints/li[@Class="RPEF.HeadTypeConstraint"]</xpath>
+  </Operation>
+
+  <!-- HeadTypes -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/HeadTypeDef[@Name="VV_HeadBase" or @ParentName="VV_HeadBase"]</xpath>
+  </Operation>
+
+  <!-- Apparel -->
+
+  <Operation Class="VEF.PatchOperationToggableSequence">
+    <enabled>True</enabled>
+    <label>Remove all Vivi apparel</label>
+    <operations>
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[@Name="VV_FemaleApparelBase" or @ParentName="VV_FemaleApparelBase"]</xpath>
+      </li>
+
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[@Name="VV_HatMakeableBase" or @ParentName="VV_HatMakeableBase"]</xpath>
+      </li>
+
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[@Name="VV_ThinApparelBase" or @ParentName="VV_ThinApparelBase"]</xpath>
+      </li>
+
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="VV_UniformHelmet" or defName="VV_WinterCape" or defName="VV_GuardianCoat" or defName="VV_Childrenswear" or defName="VV_Crown"]</xpath>
+      </li>
+    </operations>
+  </Operation>
+
+  <!-- Bionics -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="VV_FakeAntennae" or defName="VV_FakeWing" or defName="VV_BionicAntennae" or defName="VV_BionicWing"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/HediffDef[defName="VV_FakeAntennae" or defName="VV_FakeWing" or defName="VV_BionicAntennae" or defName="VV_BionicWing"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/RecipeDef[defName="VV_InstallFakeAntennae" or defName="VV_InstallFakeWing" or defName="VV_InstallBionicAntennae" or defName="VV_InstallBionicWing"]</xpath>
+  </Operation>
+
+  <!-- Recipe -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/RecipeDef[defName="VV_MakeVivicream"]/modExtensions/li[@Class="RPEF.ConstraintModExtension"]/def</xpath>
+    <value>
+      <def>VVV_CreamMakerConstraint</def>
+    </value>
+  </Operation>
+
+  <!-- Research -->
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ResearchProjectDef[defName="VV_Apparels" or defName="VV_AdvancedApparels"]</xpath>
+  </Operation>
+
+  <!-- Add CompVivi and CompViviHolder to Human ThingDef so normalized Vivis can use the Everflower system -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Human"]/comps</xpath>
+    <value>
+      <li>
+        <compClass>VVRace.CompVivi</compClass>
+      </li>
+      <li Class="VVRace.CompProperties_ViviHolder">
+        <maxCount>8</maxCount>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

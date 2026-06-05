@@ -1,0 +1,5 @@
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\1.6\Assemblies\VanillafiedVivi.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\VanillafiedVivi\obj\Release\VanillafiedVivi.csproj.AssemblyReference.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\VanillafiedVivi\obj\Release\VanillafiedVivi.GeneratedMSBuildEditorConfig.editorconfig
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\VanillafiedVivi\obj\Release\VanillafiedVivi.csproj.CoreCompileInputs.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\VanillafiedVivi\obj\Release\VanillafiedVivi.dll

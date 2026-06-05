@@ -1,0 +1,5 @@
+<LanguageData>
+  <CannotDoBillMissingCreamGene>Missing required Vivi CreamMaker gene.</CannotDoBillMissingCreamGene>
+  <VVV_GeneticUnstableLabel>Genetic unstable</VVV_GeneticUnstableLabel>
+  <VVV_GeneticUnstableLetter>{PAWN_nameDef}'s genes have become extremely unstable. In the worst case, something terrible might happen.</VVV_GeneticUnstableLetter>
+</LanguageData>

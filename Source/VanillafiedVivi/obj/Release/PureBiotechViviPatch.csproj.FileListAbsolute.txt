@@ -1,0 +1,6 @@
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\PureBiotechViviPatch\obj\Release\PureBiotechViviPatch.csproj.AssemblyReference.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\PureBiotechViviPatch\obj\Release\PureBiotechViviPatch.GeneratedMSBuildEditorConfig.editorconfig
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\PureBiotechViviPatch\obj\Release\PureBiotechViviPatch.csproj.CoreCompileInputs.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Release\Assemblies\PureBiotechViviPatch.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\Source\PureBiotechViviPatch\obj\Release\PureBiotechViviPatch.dll
+e:\SteamLibrary\steamapps\common\RimWorld\Mods\Normalize Vivi\1.6\Assemblies\PureBiotechViviPatch.dll

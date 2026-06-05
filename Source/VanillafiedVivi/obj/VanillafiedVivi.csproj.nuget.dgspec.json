@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj": {}
+  },
+  "projects": {
+    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
+        "projectName": "VanillafiedVivi",
+        "projectPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
+        "packagesPath": "C:\\Users\\mdeek\\.nuget\\packages\\",
+        "outputPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mdeek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net481"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/Monster-Train-2-Modding-Group/index.json": {}
+        },
+        "frameworks": {
+          "net481": {
+            "targetAlias": "net481",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net481": {
+          "targetAlias": "net481",
+          "dependencies": {
+            "Krafs.Rimworld.Ref": {
+              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[*, )"
+            },
+            "Lib.Harmony": {
+              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[*, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

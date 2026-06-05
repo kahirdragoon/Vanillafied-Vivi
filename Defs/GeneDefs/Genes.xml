@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <GeneDef>
+        <defName>VVV_HoneyGatherer</defName>
+        <label>honey gatherer</label>
+        <description>This gene grants grant the pawn the ability to gather honey from plants without the help of tools.</description>
+        <iconPath>Things/Item/VV_CombHoney</iconPath>
+        <displayCategory>Miscellaneous</displayCategory>
+        <biostatCpx>1</biostatCpx>
+        <biostatMet>-1</biostatMet>
+        <biostatArc>0</biostatArc>
+
+        <statOffsets>
+            <VV_HoneyGatherSpeed>1.0</VV_HoneyGatherSpeed>
+            <VV_HoneyGatherYield>1.0</VV_HoneyGatherYield>
+            <VV_PlantGatherSpeed>1.0</VV_PlantGatherSpeed>
+            <VV_PlantGatherYield>1.0</VV_PlantGatherYield>
+        </statOffsets>
+    </GeneDef>
+
+    <GeneDef>
+        <defName>VVV_CosmeticWings</defName>
+        <label>vivi wings</label>
+        <description>This gene causes vivi wings to grow from the back. The pawn can fly with them for a short time.
+        </description>
+        <iconPath>Genes/Gene_ViviWings</iconPath>
+        <displayCategory>Cosmetic</displayCategory>
+
+        <biostatCpx>1</biostatCpx>
+        <biostatMet>-1</biostatMet>
+        <biostatArc>0</biostatArc>
+
+        <statOffsets>
+            <MaxFlightTime>3</MaxFlightTime>
+            <FlightCooldown>10</FlightCooldown>
+        </statOffsets>
+
+        <renderNodeProperties>
+            <li>
+                <debugLabel>LeftWing</debugLabel>
+                <tagDef>VV_LeftWing</tagDef>
+                <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+                <subworkerClasses>
+                    <li>VVRace.PawnRenderSubWorker_WingCondition</li>
+                </subworkerClasses>
+                <texPath>Things/Pawn/Vivi/BodyParts/WingL</texPath>
+                <rotDrawMode>Fresh</rotDrawMode>
+                <drawData>
+                    <scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+                    <dataNorth>
+                        <offset>(-0.01, 0, 0.0)</offset>
+                        <layer>94</layer>
+                    </dataNorth>
+                    <dataSouth>
+                        <offset>(0.01, 0, 0.0)</offset>
+                        <layer>-2</layer>
+                    </dataSouth>
+                    <dataEast>
+                        <offset>(-0.025, 0, 0)</offset>
+                        <layer>40</layer>
+                    </dataEast>
+                    <dataWest>
+                        <offset>(0.025, 0, 0)</offset>
+                        <layer>41</layer>
+                    </dataWest>
+                </drawData>
+            </li>
+            <li>
+                <debugLabel>RightWing</debugLabel>
+                <tagDef>VV_RightWing</tagDef>
+                <workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+                <subworkerClasses>
+                    <li>VVRace.PawnRenderSubWorker_WingCondition</li>
+                </subworkerClasses>
+                <texPath>Things/Pawn/Vivi/BodyParts/WingR</texPath>
+                <rotDrawMode>Fresh</rotDrawMode>
+                <drawData>
+                    <scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+                    <dataNorth>
+                        <offset>(0.01, 0, 0)</offset>
+                        <layer>94</layer>
+                    </dataNorth>
+                    <dataSouth>
+                        <offset>(-0.01, 0, 0)</offset>
+                        <layer>-2</layer>
+                    </dataSouth>
+                    <dataEast>
+                        <offset>(-0.025, 0, 0)</offset>
+                        <layer>41</layer>
+                    </dataEast>
+                    <dataWest>
+                        <offset>(0.025, 0, 0)</offset>
+                        <layer>40</layer>
+                    </dataWest>
+                </drawData>
+            </li>
+        </renderNodeProperties>
+
+        <modExtensions>
+            <li Class="RPEF.HumanlikeFlyExtension">
+                <animationData>
+                    <HumanlikePreTeenager>
+                        <animationNorth>VV_ViviFlyNorth</animationNorth>
+                        <animationSouth>VV_ViviFlySouth</animationSouth>
+                        <animationEast>VV_ViviFlyEast</animationEast>
+                        <animationWest>VV_ViviFlyWest</animationWest>
+                    </HumanlikePreTeenager>
+                    <HumanlikePreTeenager_Vivi>
+                        <animationNorth>VV_ViviFlyNorth</animationNorth>
+                        <animationSouth>VV_ViviFlySouth</animationSouth>
+                        <animationEast>VV_ViviFlyEast</animationEast>
+                        <animationWest>VV_ViviFlyWest</animationWest>
+                    </HumanlikePreTeenager_Vivi>
+                    <HumanlikeTeenager>
+                        <animationNorth>VV_ViviFlyNorth</animationNorth>
+                        <animationSouth>VV_ViviFlySouth</animationSouth>
+                        <animationEast>VV_ViviFlyEast</animationEast>
+                        <animationWest>VV_ViviFlyWest</animationWest>
+                    </HumanlikeTeenager>
+                    <HumanlikeTeenager_Vivi>
+                        <animationNorth>VV_ViviFlyNorth</animationNorth>
+                        <animationSouth>VV_ViviFlySouth</animationSouth>
+                        <animationEast>VV_ViviFlyEast</animationEast>
+                        <animationWest>VV_ViviFlyWest</animationWest>
+                    </HumanlikeTeenager_Vivi>
+                    <HumanlikeAdult>
+                        <animationNorth>VV_ViviFlyNorth</animationNorth>
+                        <animationSouth>VV_ViviFlySouth</animationSouth>
+                        <animationEast>VV_ViviFlyEast</animationEast>
+                        <animationWest>VV_ViviFlyWest</animationWest>
+                    </HumanlikeAdult>
+                    <HumanlikeAdult_Vivi>
+                        <animationNorth>VV_ViviFlyNorth</animationNorth>
+                        <animationSouth>VV_ViviFlySouth</animationSouth>
+                        <animationEast>VV_ViviFlyEast</animationEast>
+                        <animationWest>VV_ViviFlyWest</animationWest>
+                    </HumanlikeAdult_Vivi>
+                </animationData>
+
+                <alwaysFlyIfDrafted>true</alwaysFlyIfDrafted>
+            </li>
+        </modExtensions>
+    </GeneDef>
+
+    <GeneDef>
+        <defName>VVV_ViviPhysiology</defName>
+        <label>vivi physiology</label>
+        <description>ToDo.</description>
+        <geneClass>VanillafiedVivi.Gene_ViviPhysiology</geneClass>
+        <iconPath>UI/Icons/Xenotypes/Vivi</iconPath>
+        <displayCategory>Miscellaneous</displayCategory>
+        <biostatCpx>1</biostatCpx>
+        <biostatMet>-1</biostatMet>
+        <enablesNeeds>
+            <li>VV_RoyalJelly</li>
+        </enablesNeeds>
+        <canGenerateInGeneSet>false</canGenerateInGeneSet>
+        <statFactors>
+			<VEF_CosmeticBodySize_Multiplier>0.70</VEF_CosmeticBodySize_Multiplier>
+		</statFactors>
+        <modExtensions>
+            <li Class="VEF.Genes.GeneExtension">
+                <forceFemale>true</forceFemale>
+            </li>
+        </modExtensions>
+    </GeneDef>
+
+    <GeneDef>
+        <defName>VVV_CosmeticAntennae</defName>
+        <label>vivi antennae</label>
+        <description>This gene causes decorative vivi antennae to grow from the head. They are purely cosmetic.</description>
+        <iconPath>Genes/Gene_ViviAntennae</iconPath>
+        <displayCategory>Cosmetic</displayCategory>
+
+        <biostatCpx>1</biostatCpx>
+        <biostatMet>0</biostatMet>
+        <biostatArc>0</biostatArc>
+
+        <renderNodeProperties>
+            <li>
+                <debugLabel>LeftAntenna</debugLabel>
+                <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+                <texPath>Things/Pawn/Vivi/BodyParts/AntennaL</texPath>
+                <rotDrawMode>Fresh, Rotting</rotDrawMode>
+                <drawData>
+                    <scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+                    <defaultData>
+                        <layer>71</layer>
+                    </defaultData>
+                    <dataNorth>
+                        <offset>(0, 0, 0.23)</offset>
+                    </dataNorth>
+                    <dataSouth>
+                        <offset>(0, 0, 0.27)</offset>
+                    </dataSouth>
+                    <dataEast>
+                        <offset>(0.04, 0, 0.26)</offset>
+                    </dataEast>
+                    <dataWest>
+                        <offset>(-0.04, 0, 0.26)</offset>
+                    </dataWest>
+                </drawData>
+            </li>
+            <li>
+                <debugLabel>RightAntenna</debugLabel>
+                <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+                <texPath>Things/Pawn/Vivi/BodyParts/AntennaR</texPath>
+                <rotDrawMode>Fresh, Rotting</rotDrawMode>
+                <drawData>
+                    <scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+                    <defaultData>
+                        <layer>71</layer>
+                    </defaultData>
+                    <dataNorth>
+                        <offset>(0, 0, 0.23)</offset>
+                    </dataNorth>
+                    <dataSouth>
+                        <offset>(0, 0, 0.27)</offset>
+                    </dataSouth>
+                    <dataEast>
+                        <offset>(0.04, 0, 0.26)</offset>
+                    </dataEast>
+                    <dataWest>
+                        <offset>(-0.04, 0, 0.26)</offset>
+                    </dataWest>
+                </drawData>
+            </li>
+        </renderNodeProperties>
+    </GeneDef>
+
+    <GeneDef>
+        <defName>VVV_CreamMaker</defName>
+        <label>vivi cream maker</label>
+        <description>Carriers of this gene can create Vivi Cream the the
+        </description>
+        <iconPath>UI/Icons/Genes/Gene_Vivi2</iconPath>
+        <displayCategory>Miscellaneous</displayCategory>
+        <biostatCpx>1</biostatCpx>
+        <biostatMet>0</biostatMet>
+        <biostatArc>0</biostatArc>
+    </GeneDef>
+</Defs>

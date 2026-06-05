@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+    <!-- Furniture -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="VV_WaterdropLamp"]/designationCategory</xpath>
+        <value>
+            <designationCategory>Furniture</designationCategory>
+        </value>
+    </Operation>
+
+    <!-- Misc -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="VV_ManaEmitter" or defName="VV_ViviHatchery" or defName="VV_SkyweedBox"]/designationCategory</xpath>
+        <value>
+            <designationCategory>Misc</designationCategory>
+        </value>
+    </Operation>
+
+    <!-- Production -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="VV_ArcanePlantPot" or defName="VV_LargeArcanePlantPot" or defName="VV_GatheringSpot" or defName="VV_GatheringBarrel" or defName="VV_RefiningWorkbench" or defName="VV_AutoExtractor"]/designationCategory</xpath>
+        <value>
+            <designationCategory>Production</designationCategory>
+        </value>
+    </Operation>
+
+    <!-- Security -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="VV_ShockNetTrap"]/designationCategory</xpath>
+        <value>
+            <designationCategory>Security</designationCategory>
+        </value>
+    </Operation>
+
+    <!-- Structure -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="VV_ViviCreamWall"]/designationCategory</xpath>
+        <value>
+            <designationCategory>Structure</designationCategory>
+        </value>
+    </Operation>
+
+    <!-- Floors -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/TerrainDef[defName="VV_ViviCreamFloor" or defName="VV_HoneycombTile" or defName="VV_SterileHoneycombTile"]/designationCategory</xpath>
+        <value>
+            <designationCategory>Floors</designationCategory>
+        </value>
+    </Operation>
+
+    <!-- Cannot remove VV_Bulidings — VVRace.dll has a [DefOf] field that binds to it.
+         Clearing specialDesignatorClasses leaves the def alive but the tab empty (hidden). -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>Defs/DesignationCategoryDef[defName="VV_Bulidings"]/specialDesignatorClasses</xpath>
+        <value>
+            <specialDesignatorClasses/>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/DesignationCategoryDef[defName="Orders"]/specialDesignatorClasses</xpath>
+        <value>
+            <li>VVRace.Designator_FortifyHoneycombWall</li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/DesignationCategoryDef[defName="Structure"]/specialDesignatorClasses</xpath>
+        <value>
+            <li>VVRace.Designator_FortifyHoneycombWall</li>
+        </value>
+    </Operation>
+</Patch>

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net481</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <OutputType>Library</OutputType>
+    <AssemblyName>VanillafiedVivi</AssemblyName>
+    <OutputPath>..\..\1.6\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="*">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony" Version="*">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="RPEF">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\RPEF.dll</HintPath>
+      <HintPath Condition="!Exists('..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\RPEF.dll')">d:\Rimworld Modding\RWMod-Vivi-master\Mod\v1.6\Assemblies\RPEF.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VVRace">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\VVRace.dll</HintPath>
+      <HintPath Condition="!Exists('..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\VVRace.dll')">d:\Rimworld Modding\RWMod-Vivi-master\Mod\v1.6\Assemblies\VVRace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

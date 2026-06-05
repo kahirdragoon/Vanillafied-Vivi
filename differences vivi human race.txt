@@ -1,0 +1,41 @@
+differences vivi human race
+
+                    vivi    human
+movespeed           5.8     4.6     x
+market value        1250    1750
+ComfyTemperatureMax 36      26      x
+PainShockThreshold  0.7     0.8     x
+CarryingCapacity    85      75
+MeatAmount          35      140
+LeatherAmount       35      75
+Mass                45      60
+ConstructionSpeed   1.25    1
+SmoothingSpeed      1.5     1
+CleaningSpeed       1.25    1
+PawnTrapSpringChance 0.3    1
+MeleeDodgeChance    10      0
+MaxNutrition        1.25    
+MiningSpeed         0.5     1
+MiningYield         0.5     1
+PsychicSensitivity  0.25    1       x
+Fertility           0       1       x
+RoyalFavorValue     1       3
+MaxFlightTime       3       
+FlightCooldown      10
+
+smaller bodytype
+only female
+
+
+Alpha Genes:
+- smaller body
+
+B&S
+- smaller body
+
+Outlander
+- smaller body
+- only female
+
+
+Raiders are far weaker withput their apparel

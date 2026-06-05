@@ -1,0 +1,10 @@
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Stronger Empire Raids\1.6\Assemblies\StrongerEmpire.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Stronger Empire Raids\Source\StrongerEmpire\obj\1.6\StrongerEmpire.csproj.AssemblyReference.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Stronger Empire Raids\Source\StrongerEmpire\obj\1.6\StrongerEmpire.GeneratedMSBuildEditorConfig.editorconfig
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Stronger Empire Raids\Source\StrongerEmpire\obj\1.6\StrongerEmpire.csproj.CoreCompileInputs.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Stronger Empire Raids\Source\StrongerEmpire\obj\1.6\StrongerEmpire.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\StrongerEmpire\1.6\Assemblies\StrongerEmpire.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\StrongerEmpire\Source\StrongerEmpire\obj\1.6\StrongerEmpire.csproj.AssemblyReference.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\StrongerEmpire\Source\StrongerEmpire\obj\1.6\StrongerEmpire.GeneratedMSBuildEditorConfig.editorconfig
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\StrongerEmpire\Source\StrongerEmpire\obj\1.6\StrongerEmpire.csproj.CoreCompileInputs.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\StrongerEmpire\Source\StrongerEmpire\obj\1.6\StrongerEmpire.dll

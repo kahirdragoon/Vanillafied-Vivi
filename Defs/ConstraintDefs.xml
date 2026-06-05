@@ -1,0 +1,14 @@
+<Defs>
+    <RPEF.ConstraintDef>
+        <defName>VVV_CreamMakerConstraint</defName>
+        <constraints>
+            <li Class="VanillafiedVivi.GeneConstraint">
+                <type>Required</type>
+                <genes>
+                    <li>VVV_CreamMaker</li>
+                </genes>
+                <failReason>not vivi cream maker gene</failReason>
+            </li>
+        </constraints>
+    </RPEF.ConstraintDef>
+</Defs>

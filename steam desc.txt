@@ -1,0 +1,57 @@
+[h2]Beta Disclaimer[/h2]
+I started with thsi mod over a year ago for a playthrough i never did. But since it as already much done i decied to finish it. I have never done a complete playthrough with this mod nor with the original vivi mod. Thats why i consider this mod to be in beta state until proven otherwise.
+
+Please report if you find anythig i forgot to patch or if you have suggestion for a better gene selection to represent the xenotype. Also please report an bugs so i can fix them.
+
+[h1]Vanilla-Like Vivi (BETA)[/h1]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3241577976]Vivi Race[/url] is a mod with some very cool mechanics. Sadly is clashed visually with the vanilla rimworld and i prefer a cohesive art style if possible. Also custom bodies mean i cant use them other apparel from mods. So this is a patch that turn the vivi race into humans while preserving their abilties by tying them into genes. This should hopefully give them compatibility with other hair, head, apparel, and cosmetic mods while trying keeping everything that makes Vivis unique.
+
+Also makes it possible to use vivis mechanics by non vivis via gene modding.
+
+[h2]What Changes[/h2]
+
+I removed most constraints so most vivi stuff is now gated by faction, genes or not gates anymore at all.
+
+[b]Pawns & Appearance[/b]
+Vivis are now Human pawns with the Vivi xenotype applied. They use vanilla heads and hair, so any hair or face mod that works on humans will work on them too. Vivi-exclusive head shapes and hair styles are removed.
+
+[b]Xenotype & Genes[/b]
+The Vivi xenotype is patched with genes trying replicating bonuses from their original race or offset metabolic costs: quick movement, heat tolerance, cold weakness, weak psychic sensitivity, and a thin body type.
+
+Four custom genes are added:
+[list]
+[*][b]Vivi Physiology[/b] — This is the main vivi gene that makes the pawn compatible with all vivi mechanics usually reserved for royal vivis. It takes care of the royal jelly need, the metamorphosis into a royal vivi and the connection to the everflower. Also shrinks the pawn slightly.
+[*][b]Honey Gatherer[/b] — improved stats for harvesting honey and magical plants.
+[*][b]Cosmetic Wings[/b] — the Vivi wings with flight animations. Yes the flight feature works too.
+[*][b]Cosmetic Antenna[/b] — the Vivi antenna - purely cosmetic
+[*][b]Cream Maker[/b] — a marker gene that unlocks the Vivicream production recipe. Only pawns with this gene can make Vivicream, replacing the old race check.
+[/list]
+
+[b]Apparel[/b]
+All Vivi-specific clothing, hats, and implants (antenna/wing prosthetics and their surgical recipes) are removed. They simply didnt fit the vanilla body very well and it looked very wierd. Vivis wear vanilla apparel instead Apparel research is also removed.
+
+[b]Buildings & Architect Menu[/b]
+All Vivi buildings, furniture, floors, and traps are moved into the standard vanilla architect tabs (Production, Furniture, Security, Structure, Floors, etc.). The custom Vivi architect tab is gone. -> This is mostly because im not a fan of mod specific building categories.
+
+[b]Faction & Culture[/b]
+Patched the Vivi Federation to work with the now human race vivies. Lowered the combat power of the vivis since they are far weaker without their special apparel. Royal vivis wil spawn with royal apparel if Royality is installed.
+
+[h2]Caveats[/h2]
+
+Not all stats of the original vivi race are transfered to the xenotype. This would have required much more gene juggling to offset the met costs and/or dependencies on other gene mods which i wanted to avoid. But i hope the differences are overall negletable.
+
+Since i removed the apparel, the vivi factions is limited to neolithic and medieval apparel. And there isnt really a lot in the basegame. As a consqeuence the faction is also far weaker since the buffs from their apparel is gene. At least they still have their weapons. [b]I highly recommend installing mods containing medieval apparel[/b]
+
+Also they have the heavy tendency to spawn with parkas, since its neolithic clothing. Not intended but a side effect of to little apparel options in the base game.
+
+In addition with the genes added to offset the met costs the vivi are overall worse fighters than before. Especially in melee.
+
+They behave more like actual colonists. Meaning they care about rooms (solvable by ideology), family ties and probably romance too. I havent decied how to solve this if at all. Probably anotehr gene for something like vivi mentality but its already difficult enough to offset the met costs of the existing genes. Open for suggestions.
+
+[h2]Credits[/h2]
+gguake and engu for the Vivi mod. Thanks a lot for very cool mechanics.
+Vanilla Expanded Team for their framework. Without it some patches in this mod would have been way harder and more tedious.
+
+[h3]AI Disclaimer[/h3]
+I use ai to support my modding endeavour. I am working as a professional programmer and i have multiple years of c# experience. I understand the code being written and evaluate to the best of my knowledge. But ai speeds up mod creation for me greatly allowing me to make better use of my time.
