@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj": {}
+    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Vanillafied Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj": {}
   },
   "projects": {
-    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj": {
+    "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Vanillafied Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
+        "projectUniqueName": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Vanillafied Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
         "projectName": "VanillafiedVivi",
-        "projectPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
+        "projectPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Vanillafied Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
         "packagesPath": "C:\\Users\\mdeek\\.nuget\\packages\\",
-        "outputPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\obj\\",
+        "outputPath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Vanillafied Vivi\\Source\\VanillafiedVivi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

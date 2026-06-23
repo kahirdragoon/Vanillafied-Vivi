@@ -18,7 +18,7 @@ namespace VanillafiedVivi
             return pawn.Reserve(Hatchery, job, errorOnFailed: errorOnFailed);
         }
 
-        public override IEnumerable<Toil> MakeNewToils()
+        protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(HatcheryIdx);
             this.FailOn(() =>

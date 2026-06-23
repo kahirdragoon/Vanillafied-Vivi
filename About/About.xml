@@ -22,10 +22,11 @@ Xenotype (VV_Vivi):
 - Added custom genes: VVV_HoneyGatherer, VVV_CosmeticWings, VVV_CosmeticAntennae, VVV_ViviPhysiology
 
 Custom Genes:
-- VVV_HoneyGatherer: bonus stats for honey and magic plant gathering
-- VVV_CosmeticWings: cosmetic wings with Vivi flight animations (visual only, no true flight)
-- VVV_ViviPhysiology: royal Vivi egg-laying cycle (15-day), progress bar gizmo, forces female, enables Royal Jelly need
-- VVV_CreamMaker: marker gene that unlocks the Vivicream production recipe
+- Honey Gatherer: bonus stats for honey and magic plant gathering
+- Cosmetic Wings: cosmetic wings with Vivi flight animations (visual only, no true flight)
+- Vivi Physiology: royal Vivi egg-laying cycle (15-day), progress bar gizmo, forces female, enables Royal Jelly need
+- Cream Maker: marker gene that unlocks the Vivicream production recipe
+- Hive Mind: disables and shortens specific thoughts
 
 Apparel:
 - Removed all Vivi-specific apparel (female garments, hats, guard uniform/helmet, winter cape, guardian coat, children's wear)

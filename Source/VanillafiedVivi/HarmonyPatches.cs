@@ -171,6 +171,29 @@ namespace VanillafiedVivi
         }
     }
 
+    // VVV_HiveMind carriers still grieve a daughter or a close friend, but the hive's instincts
+    // pull them back to work faster than a baseliner — shortens duration instead of nullifying.
+    [HarmonyPatch(typeof(MemoryThoughtHandler), nameof(MemoryThoughtHandler.TryGainMemory), new[] { typeof(Thought_Memory), typeof(Pawn) })]
+    public static class Patch_MemoryThoughtHandler_TryGainMemory_HiveMindGrief
+    {
+        public static void Postfix(Thought_Memory newThought)
+        {
+            var pawn = newThought?.pawn;
+            if (pawn?.genes == null) return;
+            if (!pawn.genes.GenesListForReading.Any(g => g.def == VVVDefOf.VVV_HiveMind && g.Active)) return;
+
+            int shortenedDays;
+            if (newThought.def == VVVDefOf.MyDaughterDied || newThought.def == VVVDefOf.MyDaughterLost)
+                shortenedDays = 15;
+            else if (newThought.def == VVVDefOf.PawnWithGoodOpinionDied || newThought.def == VVVDefOf.PawnWithGoodOpinionLost)
+                shortenedDays = 10;
+            else
+                return;
+
+            newThought.durationTicksOverride = shortenedDays * 60000;
+        }
+    }
+
     public static class Patch_CompViviHatcher_Hatch
     {
         public static bool Prefix(CompViviHatcher __instance)

@@ -229,11 +229,22 @@
     </GeneDef>
 
     <GeneDef>
+        <defName>VVV_HiveMind</defName>
+        <label>hive mind</label>
+        <description>Vivis live and think as part of a hive, not as isolated individuals bound by family ties. The death or loss of distant relatives, a crying baby, disturbed sleep, or sharing a room means little to them. Even the loss of close kin or a dear friend is mourned only briefly before the hive's instincts move on.</description>
+        <iconPath>UI/Icons/Xenotypes/Vivi</iconPath>
+        <displayCategory>Miscellaneous</displayCategory>
+        <biostatCpx>1</biostatCpx>
+        <biostatMet>0</biostatMet>
+        <biostatArc>0</biostatArc>
+    </GeneDef>
+
+    <GeneDef>
         <defName>VVV_CreamMaker</defName>
         <label>vivi cream maker</label>
         <description>Carriers of this gene can create Vivi Cream the the
         </description>
-        <iconPath>UI/Icons/Genes/Gene_Vivi2</iconPath>
+        <iconPath>Things/Item/VV_Cream</iconPath>
         <displayCategory>Miscellaneous</displayCategory>
         <biostatCpx>1</biostatCpx>
         <biostatMet>0</biostatMet>

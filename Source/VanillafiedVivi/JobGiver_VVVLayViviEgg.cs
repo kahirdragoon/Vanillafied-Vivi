@@ -14,7 +14,7 @@ namespace VanillafiedVivi
             return gene != null && gene.CanLayEgg ? 10f : 0f;
         }
 
-        public override Job TryGiveJob(Pawn pawn)
+        protected override Job TryGiveJob(Pawn pawn)
         {
             var gene = pawn.genes?.GenesListForReading.OfType<Gene_ViviPhysiology>().FirstOrFallback();
             if (gene == null || !gene.CanLayEgg)

@@ -23,9 +23,16 @@ namespace VanillafiedVivi
 
         // Genes (our mod)
         public static GeneDef VVV_CosmeticWings;
+        public static GeneDef VVV_HiveMind;
 
         // Needs (VVRace)
         public static NeedDef VV_RoyalJelly;
+
+        // Thoughts (vanilla — shortened grief for VVV_HiveMind carriers)
+        public static ThoughtDef MyDaughterDied;
+        public static ThoughtDef MyDaughterLost;
+        public static ThoughtDef PawnWithGoodOpinionDied;
+        public static ThoughtDef PawnWithGoodOpinionLost;
 
         static VVVDefOf() { DefOfHelper.EnsureInitializedInCtor(typeof(VVVDefOf)); }
     }

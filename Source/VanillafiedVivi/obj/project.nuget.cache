@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5gAj4RS4zbM=",
+  "dgSpecHash": "miaivOkBcBA=",
   "success": true,
-  "projectFilePath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Normalize Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
+  "projectFilePath": "E:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Vanillafied Vivi\\Source\\VanillafiedVivi\\VanillafiedVivi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mdeek\\.nuget\\packages\\krafs.rimworld.ref\\1.6.4633\\krafs.rimworld.ref.1.6.4633.nupkg.sha512",
+    "C:\\Users\\mdeek\\.nuget\\packages\\krafs.rimworld.ref\\1.6.4850\\krafs.rimworld.ref.1.6.4850.nupkg.sha512",
     "C:\\Users\\mdeek\\.nuget\\packages\\lib.harmony\\2.4.2\\lib.harmony.2.4.2.nupkg.sha512"
   ],
   "logs": []

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- VVV_HiveMind: Vivis don't form the same emotional bonds as baseliners. These thoughts
+       never apply to a carrier — mirrors the source Vivi Race mod's ThoughtConstraint blacklist
+       (VV_PawnConstraint), reimplemented via vanilla's ThoughtDef.nullifyingGenes. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThoughtDef[
+      defName="SleepDisturbed" or
+      defName="CryingBaby" or
+      defName="MyCryingBaby" or
+
+      defName="MySonDied" or
+      defName="MySisterDied" or
+      defName="MyHusbandDied" or
+      defName="MyWifeDied" or
+      defName="MyFianceDied" or
+      defName="MyFianceeDied" or
+      defName="MyLoverDied" or
+      defName="MyBrotherDied" or
+      defName="MyGrandchildDied" or
+      defName="MyNieceDied" or
+      defName="MyNephewDied" or
+      defName="MyHalfSiblingDied" or
+      defName="MyAuntDied" or
+      defName="MyUncleDied" or
+      defName="MyCousinDied" or
+      defName="MyKinDied" or
+
+      defName="MySonLost" or
+      defName="MySisterLost" or
+      defName="MyHusbandLost" or
+      defName="MyWifeLost" or
+      defName="MyFianceLost" or
+      defName="MyFianceeLost" or
+      defName="MyLoverLost" or
+      defName="MyBrotherLost" or
+      defName="MyGrandchildLost" or
+      defName="MyNieceLost" or
+      defName="MyNephewLost" or
+      defName="MyHalfSiblingLost" or
+      defName="MyAuntLost" or
+      defName="MyUncleLost" or
+      defName="MyCousinLost" or
+      defName="MyKinLost"
+    ]</xpath>
+    <value>
+      <nullifyingGenes>
+        <li>VVV_HiveMind</li>
+      </nullifyingGenes>
+    </value>
+  </Operation>
+</Patch>
