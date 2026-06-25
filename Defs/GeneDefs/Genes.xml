@@ -145,7 +145,7 @@
     <GeneDef>
         <defName>VVV_ViviPhysiology</defName>
         <label>vivi physiology</label>
-        <description>ToDo.</description>
+        <description>This is the core genes which determines the Vivis lifecycle. Pawn with this gene are smaller and always female. If feed enough royal jelly in ther youth they develope egg laying capabilities.</description>
         <geneClass>VanillafiedVivi.Gene_ViviPhysiology</geneClass>
         <iconPath>UI/Icons/Xenotypes/Vivi</iconPath>
         <displayCategory>Miscellaneous</displayCategory>
@@ -242,12 +242,11 @@
     <GeneDef>
         <defName>VVV_CreamMaker</defName>
         <label>vivi cream maker</label>
-        <description>Carriers of this gene can create Vivi Cream the the
-        </description>
-        <iconPath>Things/Item/VV_Cream</iconPath>
+        <description>Carriers of this gene can create Vivi Cream</description>
+        <iconPath>Things/Item/VV_Cream/VV_Cream_d</iconPath>
         <displayCategory>Miscellaneous</displayCategory>
         <biostatCpx>1</biostatCpx>
-        <biostatMet>0</biostatMet>
+        <biostatMet>-1</biostatMet>
         <biostatArc>0</biostatArc>
     </GeneDef>
 </Defs>

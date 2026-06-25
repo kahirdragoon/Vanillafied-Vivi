@@ -157,23 +157,25 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/XenotypeDef[defName="VV_Vivi"]/genes</xpath>
     <value>
-      <li>PsychicAbility_Dull</li>
+			<li>Immunity_Weak</li>
+			<li>WoundHealing_Slow</li>
       <li>MoveSpeed_Quick</li>
-      <li>AptitudeTerrible_Melee</li>
       <li>Body_Thin</li>
-      <li>Libido_Low</li>
-      <li>Pain_Extra</li>
-      <li>VVV_HoneyGatherer</li>
-      <li>VVV_CosmeticWings</li>
-      <li>VVV_CosmeticAntennae</li>
-      <li>VVV_ViviPhysiology</li>
-      <li>VVV_HiveMind</li>
+			<li>PsychicAbility_Dull</li>
+			<li>AptitudePoor_Intellectual</li>
+			<li>MaxTemp_SmallIncrease</li>
+			<li>VVV_CosmeticAntennae</li>
+			<li>VVV_CosmeticWings</li>
+			<li>VVV_HiveMind</li>
+			<li>VVV_HoneyGatherer</li>
+			<li>VVV_CreamMaker</li>
+			<li>VVV_ViviPhysiology</li>
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationRemove">
+  <!-- <Operation Class="PatchOperationRemove">
     <xpath>Defs/XenotypeDef[defName="VV_Vivi"]/genes/li[text()="AptitudePoor_Melee"]</xpath>
-  </Operation>
+  </Operation> -->
 
   <!-- Hair -->
 
