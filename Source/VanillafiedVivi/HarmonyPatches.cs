@@ -38,6 +38,18 @@ namespace VanillafiedVivi
             harmony.Patch(
                 AccessTools.Method(typeof(CompViviHatcher), "Hatch"),
                 prefix: new HarmonyMethod(typeof(Patch_CompViviHatcher_Hatch), nameof(Patch_CompViviHatcher_Hatch.Prefix)));
+
+            // VVRace gates VV_RoyalJelly on IsVivi() (CompVivi presence), but CompVivi is now on
+            // the base Human ThingDef for the Everflower system, so every Human pawn passed that
+            // check. We gate the need on the VVV_ViviPhysiology gene instead (via NeedDef's
+            // onlyIfCausedByGene, see ViviPatches.xml), so any race carrying the gene qualifies —
+            // remove VVRace's postfix so it can't override that with a race-specific false.
+            var viviRacePatchType = AccessTools.TypeByName("VVRace.HarmonyPatches.ViviRacePatch");
+            var shouldHaveNeedPostfix = AccessTools.Method(viviRacePatchType, "Pawn_NeedsTracker_ShouldHaveNeed_Postfix");
+            if (shouldHaveNeedPostfix != null)
+            {
+                harmony.Unpatch(AccessTools.Method(typeof(Pawn_NeedsTracker), "ShouldHaveNeed"), shouldHaveNeedPostfix);
+            }
         }
     }
 

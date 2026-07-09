@@ -259,4 +259,15 @@
     </value>
   </Operation>
 
+  <!-- VVRace gates VV_RoyalJelly on IsVivi() (CompVivi presence), but CompVivi is now on the base
+       Human ThingDef for the Everflower system, so every Human pawn passed that check. Gate the
+       need on the VVV_ViviPhysiology gene (which already declares enablesNeeds) instead, so only
+       genetically Vivi pawns get the need. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/NeedDef[defName="VV_RoyalJelly"]</xpath>
+    <value>
+      <onlyIfCausedByGene>true</onlyIfCausedByGene>
+    </value>
+  </Operation>
+
 </Patch>
