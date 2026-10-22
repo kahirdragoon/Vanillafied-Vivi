@@ -28,7 +28,7 @@
   </Operation>
 
   <Operation Class="PatchOperationReplace">
-    <xpath>Defs/PawnKindDef[defName="VV_RoyalViviEmpress" or defName="VV_RoyalViviLeader" or defName="VV_RoyalVivi" or defName="VV_ViviSniper"]/apparelTags</xpath>
+    <xpath>Defs/PawnKindDef[defName="VV_RoyalViviEmpress" or defName="VV_RoyalViviLeader" or defName="VV_RoyalVivi"]/apparelTags</xpath>
     <value>
       <apparelTags>
         <li>Neolithic</li>
@@ -143,9 +143,12 @@
     </value>
   </Operation>
 
-  <!-- Hediff: remove race constraint so VV_RoyalVivi can be applied to Human pawns -->
+  <!-- Race constraints: Vivis are Human now, so a VV_Vivi race requirement only locks them out (RPEF enforces
+       it on equipping and on AddHediff). Strip it from the shared constraint defs rather than from each user:
+       VV_RaceConstraint covers the Vivi weapons and food hediffs; VV_HeartAttackBlockRaceConstraint keeps its
+       heart-attack block, so royal Vivis (VV_RoyalVivi) stay immune to heart attacks. -->
   <Operation Class="PatchOperationRemove">
-    <xpath>Defs/HediffDef[defName="VV_RoyalVivi"]/modExtensions/li[@Class="RPEF.ConstraintModExtension"]</xpath>
+    <xpath>Defs/RPEF.ConstraintDef[defName="VV_RaceConstraint" or defName="VV_HeartAttackBlockRaceConstraint"]/constraints/li[@Class="RPEF.RaceConstraint"]</xpath>
   </Operation>
 
   <!-- Xenotype -->
@@ -195,6 +198,23 @@
 
   <!-- Apparel -->
 
+  <!-- The Vivi apparel research is removed below; point Vivi apparel at vanilla complex clothing instead
+       so it still resolves when the "Remove all Vivi apparel" toggle is off. Runs before the toggle so
+       it always matches. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef/recipeMaker/researchPrerequisite[text()="VV_Apparels" or text()="VV_AdvancedApparels"]</xpath>
+    <value>
+      <researchPrerequisite>ComplexClothing</researchPrerequisite>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef/recipeMaker/researchPrerequisites/li[text()="VV_Apparels" or text()="VV_AdvancedApparels"]</xpath>
+    <value>
+      <li>ComplexClothing</li>
+    </value>
+  </Operation>
+
   <Operation Class="VEF.PatchOperationToggableSequence">
     <enabled>True</enabled>
     <label>Remove all Vivi apparel</label>
@@ -214,6 +234,11 @@
       <li Class="PatchOperationRemove">
         <xpath>Defs/ThingDef[defName="VV_UniformHelmet" or defName="VV_WinterCape" or defName="VV_GuardianCoat" or defName="VV_Childrenswear" or defName="VV_Crown"]</xpath>
       </li>
+
+      <!-- All apparel with this tag is removed above -->
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/PawnKindDef[defName="VV_RoyalViviTrader"]/apparelTags/li[text()="VV_RoyalViviApparel"]</xpath>
+      </li>
     </operations>
   </Operation>
 
@@ -231,12 +256,29 @@
     <xpath>Defs/RecipeDef[defName="VV_InstallFakeAntennae" or defName="VV_InstallFakeWing" or defName="VV_InstallBionicAntennae" or defName="VV_InstallBionicWing"]</xpath>
   </Operation>
 
+  <!-- Glider wing implant targets the torso, so it works on any human -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/RecipeDef[defName="VV_InstallGliderWing"]/recipeUsers</xpath>
+    <value>
+      <li>Human</li>
+    </value>
+  </Operation>
+
   <!-- Recipe -->
 
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/RecipeDef[defName="VV_MakeVivicream"]/modExtensions/li[@Class="RPEF.ConstraintModExtension"]/def</xpath>
     <value>
       <def>VVV_CreamMakerConstraint</def>
+    </value>
+  </Operation>
+
+  <!-- Archite germline imprint is only listed for the VV_Vivi race. Its worker already restricts it to
+       royal Vivis (IsRoyalVivi), so adding Human doesn't offer it to other humans. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/RecipeDef[defName="VV_ApplyArchiteGermlineImprint"]/recipeUsers</xpath>
+    <value>
+      <li>Human</li>
     </value>
   </Operation>
 

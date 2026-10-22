@@ -6,7 +6,6 @@ using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -29,15 +28,36 @@ namespace VanillafiedVivi
             return VVVDefOf.VVV_CosmeticWings.GetModExtension<HumanlikeFlyExtension>();
         }
 
+        private static readonly MethodInfo ViviUtilityIsVivi = AccessTools.Method(typeof(ViviUtility), nameof(ViviUtility.IsVivi));
+        private static readonly MethodInfo IsTrueViviMethod = AccessTools.Method(typeof(HarmonyPatches), nameof(IsTrueVivi));
+
+        // VVRace's IsVivi() only checks for CompVivi, which is now on the Human ThingDef, so it is true for
+        // every human. A real Vivi is the original VV_Vivi race or a pawn carrying VVV_ViviPhysiology.
+        // CompVivi is still required because VVRace callers dereference it after an IsVivi() check.
+        public static bool IsTrueVivi(Pawn pawn)
+        {
+            if (pawn == null || !pawn.IsVivi())
+                return false;
+            if (pawn.def == VVThingDefOf.VV_Vivi)
+                return true;
+            return pawn.genes?.GenesListForReading.OfType<Gene_ViviPhysiology>().Any() == true;
+        }
+
+        // The Vivi hatchery is a crib sized for the VV_Vivi race: its children (0.8 base body size × 0.35)
+        // fit under its bed_maxBodySize of 0.3, Human ones (1.0 × 0.35) don't. Size Human Vivis as if they
+        // were VV_Vivi, so the same life stages fit. Body size is the only bed check this has to replace.
+        public static bool FitsViviHatchery(Pawn pawn, ThingDef bedDef)
+        {
+            if (bedDef != VVThingDefOf.VV_ViviHatchery || pawn.def == VVThingDefOf.VV_Vivi || !IsTrueVivi(pawn))
+                return false;
+            var viviBodySize = pawn.ageTracker.CurLifeStage.bodySizeFactor * VVThingDefOf.VV_Vivi.race.baseBodySize;
+            return viviBodySize <= bedDef.building.bed_maxBodySize;
+        }
+
         static HarmonyPatches()
         {
             var harmony = new Harmony("kahirDragoon.vanillafiedVivi");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-            // Private method — must patch by name
-            harmony.Patch(
-                AccessTools.Method(typeof(CompViviHatcher), "Hatch"),
-                prefix: new HarmonyMethod(typeof(Patch_CompViviHatcher_Hatch), nameof(Patch_CompViviHatcher_Hatch.Prefix)));
 
             // VVRace gates VV_RoyalJelly on IsVivi() (CompVivi presence), but CompVivi is now on
             // the base Human ThingDef for the Everflower system, so every Human pawn passed that
@@ -50,6 +70,60 @@ namespace VanillafiedVivi
             {
                 harmony.Unpatch(AccessTools.Method(typeof(Pawn_NeedsTracker), "ShouldHaveNeed"), shouldHaveNeedPostfix);
             }
+
+            RedirectIsViviCallSites(harmony);
+        }
+
+        // IsVivi() is too small to patch reliably (Mono inlines it into its callers), so rewrite the call
+        // sites instead: every VVRace method that references it — lambdas and VVRace's own Harmony patches
+        // included — plus the vanilla method VVRace's transpiler injects an IsVivi() call into.
+        private static void RedirectIsViviCallSites(Harmony harmony)
+        {
+            var targets = new List<MethodBase>();
+            var token = System.BitConverter.GetBytes(ViviUtilityIsVivi.MetadataToken);
+            foreach (var type in AccessTools.GetTypesFromAssembly(ViviUtilityIsVivi.DeclaringType.Assembly))
+            {
+                if (type.ContainsGenericParameters) continue;
+                foreach (var method in type.GetMethods(AccessTools.allDeclared))
+                {
+                    if (method == ViviUtilityIsVivi || method.IsAbstract || method.ContainsGenericParameters) continue;
+                    var il = method.GetMethodBody()?.GetILAsByteArray();
+                    if (il != null && ContainsBytes(il, token))
+                        targets.Add(method);
+                }
+            }
+
+            if (targets.Count == 0)
+                Log.Warning("[VanillafiedVivi] Found no ViviUtility.IsVivi call sites in VVRace — non-Vivi humans may be treated as Vivis.");
+
+            // VVRace transpiles an IsVivi() skip into this (Vivi xenogenes don't count as body modifications).
+            targets.Add(AccessTools.Method(typeof(GeneUtility), nameof(GeneUtility.AddedAndImplantedPartsWithXenogenesCount)));
+
+            // Priority.Last so ours runs after VVRace's transpiler has inserted its call.
+            var transpiler = new HarmonyMethod(typeof(HarmonyPatches), nameof(RedirectIsVivi)) { priority = Priority.Last };
+            foreach (var method in targets)
+                harmony.Patch(method, transpiler: transpiler);
+        }
+
+        public static IEnumerable<CodeInstruction> RedirectIsVivi(IEnumerable<CodeInstruction> instructions)
+        {
+            foreach (var instruction in instructions)
+            {
+                if (instruction.operand is MethodInfo method && method == ViviUtilityIsVivi)
+                    instruction.operand = IsTrueViviMethod;
+                yield return instruction;
+            }
+        }
+
+        private static bool ContainsBytes(byte[] haystack, byte[] needle)
+        {
+            for (int i = 0; i <= haystack.Length - needle.Length; i++)
+            {
+                int j = 0;
+                while (j < needle.Length && haystack[i + j] == needle[j]) j++;
+                if (j == needle.Length) return true;
+            }
+            return false;
         }
     }
 
@@ -57,13 +131,83 @@ namespace VanillafiedVivi
     [HarmonyPatch(typeof(CompVivi), "RefreshHairColor")]
     public static class Patch_CompVivi_RefreshHairColor
     {
-        public static bool Prefix(CompVivi __instance)
+        public static bool Prefix(CompVivi __instance) => HarmonyPatches.IsTrueVivi((Pawn)__instance.parent);
+    }
+
+    // VVRace calls this on every pawn with CompVivi reaching adulthood; for non-royals it forces the Thin
+    // body type and drops apparel. Without this, every human child turning 13 becomes Thin.
+    [HarmonyPatch(typeof(CompVivi), nameof(CompVivi.Notify_AdultLifeStageStart))]
+    public static class Patch_CompVivi_Notify_AdultLifeStageStart
+    {
+        public static bool Prefix(CompVivi __instance) => HarmonyPatches.IsTrueVivi((Pawn)__instance.parent);
+    }
+
+    // The Vivi-food learning boost stays on children with CompVivi and is removed from everyone else.
+    // CompVivi is on every Human, so without this any human child who eats Vivi food keeps it.
+    [HarmonyPatch(typeof(HediffComp_GrowthBoost), nameof(HediffComp_GrowthBoost.CompShouldRemove), MethodType.Getter)]
+    public static class Patch_HediffComp_GrowthBoost_CompShouldRemove
+    {
+        public static bool Prefix(HediffComp_GrowthBoost __instance, ref bool __result)
         {
-            var pawn = (Pawn)__instance.parent;
-            return pawn.genes?.GenesListForReading.OfType<Gene_ViviPhysiology>().Any() == true;
+            if (HarmonyPatches.IsTrueVivi(__instance.Pawn))
+                return true;
+            __result = true;
+            return false;
         }
     }
 
+    // CompVivi raises MaxNutrition from the pawn's total gene metabolism (GetStatFactor and its stat
+    // explanation both read this). Without the gate every human with negative-metabolism genes gets it.
+    [HarmonyPatch(typeof(CompVivi), nameof(CompVivi.MetabolismFoodConsumptionFactor), MethodType.Getter)]
+    public static class Patch_CompVivi_MetabolismFoodConsumptionFactor
+    {
+        public static bool Prefix(CompVivi __instance, ref float __result)
+        {
+            if (HarmonyPatches.IsTrueVivi((Pawn)__instance.parent))
+                return true;
+            __result = 1f;
+            return false;
+        }
+    }
+
+    // Child Vivis can sleep in an empty hatchery, but a Human Vivi child is too big for it (see FitsViviHatchery).
+    [HarmonyPatch(typeof(RestUtility), nameof(RestUtility.CanUseBedEver))]
+    public static class Patch_RestUtility_CanUseBedEver
+    {
+        public static void Postfix(Pawn p, ThingDef bedDef, ref bool __result)
+        {
+            if (!__result && HarmonyPatches.FitsViviHatchery(p, bedDef))
+                __result = true;
+        }
+    }
+
+    // Same size check for assigning the hatchery to a child. The rest mirrors the vanilla slave/colonist rules,
+    // which vanilla skips once the size check fails.
+    [HarmonyPatch(typeof(CompAssignableToPawn_Bed), nameof(CompAssignableToPawn_Bed.CanAssignTo))]
+    public static class Patch_CompAssignableToPawn_Bed_CanAssignTo
+    {
+        public static void Postfix(CompAssignableToPawn_Bed __instance, Pawn pawn, ref AcceptanceReport __result)
+        {
+            if (__result.Accepted || !HarmonyPatches.FitsViviHatchery(pawn, __instance.parent.def))
+                return;
+
+            var bed = (Building_Bed)__instance.parent;
+            if (!pawn.DevelopmentalStage.Baby())
+            {
+                if (bed.ForSlaves && !pawn.IsSlave)
+                {
+                    __result = "CannotAssignBedToColonist".Translate();
+                    return;
+                }
+                if (bed.ForColonists && pawn.IsSlave)
+                {
+                    __result = "CannotAssignBedToSlave".Translate();
+                    return;
+                }
+            }
+            __result = AcceptanceReport.WasAccepted;
+        }
+    }
     [HarmonyPatch(typeof(LifeStageWorker), nameof(LifeStageWorker.Notify_LifeStageStarted))]
     public static class Patch_LifeStageWorker_Notify_LifeStageStarted
     {
@@ -77,6 +221,32 @@ namespace VanillafiedVivi
                 .OfType<Gene_ViviPhysiology>()
                 .FirstOrDefault()
                 ?.OnBecameAdult();
+        }
+    }
+
+    // VVRace gives non-player Vivis (and starting Vivis, if its mod setting is on) a random xenogene, but only
+    // when the pawnkind's race is VV_Vivi, which no Vivi pawnkind is any more. Mirrors
+    // ViviRacePatch.PawnGenerator_GenerateGenes_Postfix for the other races; VVRace's own covers VV_Vivi.
+    [HarmonyPatch(typeof(PawnGenerator), "GenerateGenes")]
+    public static class Patch_PawnGenerator_GenerateGenes
+    {
+        public static void Postfix(Pawn pawn, XenotypeDef xenotype, PawnGenerationRequest request)
+        {
+            var kindDef = request.KindDef;
+            var factionDef = kindDef?.defaultFactionDef;
+            if (xenotype != VVXenotypeDefOf.VV_Vivi || factionDef == null || kindDef.race == VVThingDefOf.VV_Vivi
+                || factionDef.allowedCultures?.Contains(VVCultureDefOf.VV_ViviCulture) != true
+                || pawn.genes.Xenogenes.Count != 0)
+                return;
+
+            var startingVivi = request.Context == PawnGenerationContext.PlayerStarter
+                && VVRaceMod.Settings?.randomGenesForStartingVivi == true;
+            if (factionDef.isPlayer && !startingVivi)
+                return;
+
+            // Same count as VVRace: the int overload excludes the max, so this is always one gene.
+            foreach (var gene in ViviUtility.SelectRandomGeneForVivi(Rand.Range(1, 2)))
+                pawn.genes.AddGene(gene, xenogene: true);
         }
     }
 
@@ -163,21 +333,17 @@ namespace VanillafiedVivi
     // Vanilla Notify_JobStarted calls ForceLand() for any job without tryStartFlying=true,
     // which would ground drafted wing-gene Vivis on every action. The prefix intercepts first:
     // for drafted Vivis with alwaysFlyIfDrafted, we manage flight ourselves and skip vanilla.
+    // Pawns that can't fly at all right now (vacuum biome, mutants) are left to vanilla.
     [HarmonyPatch(typeof(Pawn_FlightTracker), nameof(Pawn_FlightTracker.Notify_JobStarted))]
     public static class Patch_Pawn_FlightTracker_Notify_JobStarted
     {
-        private static readonly MethodInfo StartFlyingInternal =
-            AccessTools.Method(typeof(Pawn_FlightTracker), "StartFlyingInternal");
-
-        public static bool Prefix(Pawn_FlightTracker __instance, Job job, Pawn ___pawn, int ___flightCooldownTicks)
+        public static bool Prefix(Pawn_FlightTracker __instance, Job job, Pawn ___pawn)
         {
             var ext = HarmonyPatches.GetWingsFlyExtension(___pawn);
-            if (ext == null || !ext.alwaysFlyIfDrafted || !___pawn.Drafted)
+            if (ext == null || !ext.alwaysFlyIfDrafted || !___pawn.Drafted || !__instance.CanEverFly)
                 return true;
 
-            if (!__instance.Flying && ___flightCooldownTicks <= 0)
-                StartFlyingInternal.Invoke(__instance, null);
-
+            __instance.StartFlying(); // only takes off if grounded and off cooldown (CanFlyNow)
             job.flying = __instance.Flying;
             return false;
         }
@@ -203,101 +369,6 @@ namespace VanillafiedVivi
                 return;
 
             newThought.durationTicksOverride = shortenedDays * 60000;
-        }
-    }
-
-    public static class Patch_CompViviHatcher_Hatch
-    {
-        public static bool Prefix(CompViviHatcher __instance)
-        {
-            var hatcheeParent = __instance.hatcheeParent;
-            if (hatcheeParent?.genes?.GenesListForReading.OfType<Gene_ViviPhysiology>().FirstOrFallback() == null)
-                return true; // not our egg — let original handle it
-
-            // Egg was laid by a normalized Vivi — spawn Human pawn
-            try
-            {
-                var hatchery = __instance.parent.ParentHolder as ViviEggHatchery;
-                if (hatchery == null) return false;
-
-                var faction = hatchery.Faction;
-                var pawnKindDef = (faction?.IsPlayer ?? false) ? VVPawnKindDefOf.VV_PlayerVivi : null;
-                if (pawnKindDef == null) return false;
-
-                try
-                {
-                    Rand.PushState(__instance.randomSeed);
-
-                    var randomGeneCount = Mathf.FloorToInt(__instance.Props.geneCountCurve.Evaluate(Rand.Range(0, 10000)));
-                    var xenogenes = ViviUtility.SelectRandomGeneForVivi(randomGeneCount, __instance.parentXenogenes);
-
-                    // Ensure the hatched pawn carries the physiology gene
-                    var physiologyDef = DefDatabase<GeneDef>.GetNamed("VVV_ViviPhysiology");
-                    if (!xenogenes.Contains(physiologyDef))
-                        xenogenes.Add(physiologyDef);
-
-                    var request = new PawnGenerationRequest(
-                        pawnKindDef,
-                        faction: faction,
-                        allowDowned: true,
-                        developmentalStages: DevelopmentalStage.Newborn,
-                        forcedXenotype: VVXenotypeDefOf.VV_Vivi,
-                        forcedXenogenes: xenogenes);
-
-                    if (hatcheeParent.Name is NameTriple nameTriple)
-                        request.SetFixedLastName(nameTriple.Last);
-
-                    var pawn = PawnGenerator.GeneratePawn(request);
-                    if (GenSpawn.Spawn(pawn, hatchery.Position, hatchery.Map) != null)
-                    {
-                        if (pawn.IsColonist)
-                        {
-                            var sb = new StringBuilder();
-                            sb.Append(
-                                LocalizeString_Letter.VV_Letter_ViviEggHatched.Translate(hatcheeParent.Named("PARENT")));
-
-                            if (pawn.genes?.Xenogenes.Count > 0)
-                            {
-                                sb.AppendInNewLine(LocalizeString_Letter.VV_Letter_ViviEggHatchedWithGene.Translate());
-                                sb.AppendInNewLine(string.Join(", ", pawn.genes.Xenogenes.Select(g => g.def.LabelCap)));
-                            }
-
-                            Find.LetterStack.ReceiveLetter(
-                                LocalizeString_Letter.VV_Letter_ViviEggHatchedLabel.Translate(),
-                                sb.ToString(),
-                                LetterDefOf.PositiveEvent,
-                                pawn);
-                        }
-
-                        if (pawn.playerSettings != null && hatcheeParent.playerSettings != null
-                            && hatcheeParent.Faction == faction)
-                        {
-                            pawn.playerSettings.AreaRestrictionInPawnCurrentMap =
-                                hatcheeParent.playerSettings.AreaRestrictionInPawnCurrentMap;
-                        }
-
-                        if (pawn.RaceProps.IsFlesh)
-                            pawn.relations.AddDirectRelation(PawnRelationDefOf.Parent, hatcheeParent);
-
-                        if (__instance.parent.Spawned)
-                            FilthMaker.TryMakeFilth(hatchery.Position, hatchery.Map, ThingDefOf.Filth_AmnioticFluid, count: 3);
-                    }
-                    else
-                    {
-                        Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.Discard);
-                    }
-                }
-                finally
-                {
-                    Rand.PopState();
-                }
-            }
-            finally
-            {
-                __instance.parent.Destroy();
-            }
-
-            return false; // skip original Hatch()
         }
     }
 }

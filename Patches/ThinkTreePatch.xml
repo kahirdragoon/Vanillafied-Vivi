@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-    <!-- Inject egg-laying job into the colonist think tree, before JobGiver_Work.
-         JobGiver_VVVLayViviEgg gates itself to pawns with Gene_ViviPhysiology and
-         a ready egg (priority 0 for all other pawns, so this is a cheap no-op). -->
+    <!-- Inject Vivi jobs into the colonist think tree, before JobGiver_Work. VVRace adds these under
+         a VV_Vivi race-only node, which Human Vivis never pass. Both givers gate themselves via
+         GetPriority (0 unless the pawn has a ready egg / a royal with a pending Everflower teleport),
+         so the priority sorter skips them for everyone else. -->
     <Operation Class="PatchOperationInsert">
         <xpath>Defs/ThinkTreeDef[defName="MainColonistBehaviorCore"]/thinkRoot/subNodes/li[1]/subNodes/li[@Class="JobGiver_Work"]</xpath>
         <order>Prepend</order>
         <value>
             <li Class="VanillafiedVivi.JobGiver_VVVLayViviEgg" />
+            <li Class="VVRace.JobGiver_TryTeleportEverflower" />
         </value>
     </Operation>
 </Patch>

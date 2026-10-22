@@ -1,1 +1,6 @@
 /Normalize Vivi.code-workspace
+
+# Build output and IDE state
+.vs/
+obj/
+bin/

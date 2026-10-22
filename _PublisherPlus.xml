@@ -2,6 +2,8 @@
 <Configuration>
   <Excluded>
     <exclude>.git</exclude>
+    <exclude>.gitignore</exclude>
+    <exclude>.kilo</exclude>
     <exclude>About\Aerograss_South.png</exclude>
     <exclude>About\Orchid_South.png</exclude>
     <exclude>About\preview.pdn</exclude>

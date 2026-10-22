@@ -1,13 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net481</TargetFramework>
+    <!-- net481 builds 1.6\Assemblies, net10.0 builds 1.7\Assemblies (RimWorld 1.7 runs on .NET 10). -->
+    <TargetFrameworks>net481;net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <OutputType>Library</OutputType>
     <AssemblyName>VanillafiedVivi</AssemblyName>
-    <OutputPath>..\..\1.6\Assemblies\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net481'">
+    <RimWorldVersion>1.6</RimWorldVersion>
+    <RimWorldRefVersion>1.6.*</RimWorldRefVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net10.0'">
+    <RimWorldVersion>1.7</RimWorldVersion>
+    <RimWorldRefVersion>1.7.*-*</RimWorldRefVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputPath>..\..\$(RimWorldVersion)\Assemblies\</OutputPath>
+    <!-- Neither target appends its framework folder, so keep their intermediate files apart. -->
+    <IntermediateOutputPath>obj\$(Configuration)\$(RimWorldVersion)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>none</DebugType>
@@ -16,7 +29,7 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="*">
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="$(RimWorldRefVersion)">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Lib.Harmony" Version="*">
@@ -24,14 +37,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <!-- Always build against the Workshop Vivi DLLs for the matching game version. The local copy in
+         d:\Rimworld Modding\RWMod-Vivi-master is for code lookup only and can be ahead of the Workshop. -->
     <Reference Include="RPEF">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\RPEF.dll</HintPath>
-      <HintPath Condition="!Exists('..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\RPEF.dll')">d:\Rimworld Modding\RWMod-Vivi-master\Mod\v1.6\Assemblies\RPEF.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\3241577976\v$(RimWorldVersion)\Assemblies\RPEF.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVRace">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\VVRace.dll</HintPath>
-      <HintPath Condition="!Exists('..\..\..\..\..\..\workshop\content\294100\3241577976\v1.6\Assemblies\VVRace.dll')">d:\Rimworld Modding\RWMod-Vivi-master\Mod\v1.6\Assemblies\VVRace.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\3241577976\v$(RimWorldVersion)\Assemblies\VVRace.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

@@ -17,19 +17,20 @@ I removed most constraints, so most vivi stuff is now gated by faction, genes or
 Vivis are now Human pawns with the Vivi xenotype applied. They use vanilla heads and hair, so any hair or face mod that works on humans will work on them too. Vivi-exclusive head shapes and hair styles are removed.
 
 [b]Xenotype & Genes[/b]
-The Vivi xenotype is patched with genes trying to replicate bonuses from their original race or offset metabolic costs: quick movement, heat tolerance, cold weakness, weak psychic sensitivity, and a thin body type.
+The Vivi xenotype is patched with genes trying to replicate bonuses from their original race or offset metabolic costs: quick movement, heat tolerance, weak psychic sensitivity, a thin body type, weak immunity, slow wound healing and poor intellectual aptitude.
 
-Four custom genes are added:
+Six custom genes are added:
 [list]
 [*][b]Vivi Physiology[/b] — This is the main vivi gene that makes the pawn compatible with all vivi mechanics usually reserved for royal vivis. It takes care of the royal jelly need, the metamorphosis into a royal vivi and the connection to the everflower. Also shrinks the pawn slightly.
 [*][b]Honey Gatherer[/b] — improved stats for harvesting honey and magical plants.
-[*][b]Cosmetic Wings[/b] — the Vivi wings with flight animations. Yes the flight feature works too.
-[*][b]Cosmetic Antenna[/b] — the Vivi antenna - purely cosmetic
-[*][b]Cream Maker[/b] — a marker gene that unlocks the Vivicream production recipe. Only pawns with this gene can make Vivicream, replacing the old race check.
+[*][b]Vivi Wings[/b] — the Vivi wings with flight animations. Yes the flight feature works too.
+[*][b]Vivi Antennae[/b] — the Vivi antennae - purely cosmetic
+[*][b]Vivi Cream Maker[/b] — a marker gene that unlocks the Vivicream production recipe. Only pawns with this gene can make Vivicream, replacing the old race check.
+[*][b]Hive Mind[/b] — Vivis don't care about disturbed sleep, crying babies or the death and loss of most relatives. Grief for their daughters and close friends passes faster.
 [/list]
 
 [b]Apparel[/b]
-All Vivi-specific clothing, hats, and implants (antenna/wing prosthetics and their surgical recipes) are removed. They simply didn't fit the vanilla body very well and it looked very weird. Vivis wear vanilla apparel instead. Apparel research is also removed.
+All Vivi-specific clothing, hats, and implants (antenna/wing prosthetics and their surgical recipes) are removed. They simply didn't fit the vanilla body very well and it looked very weird. Vivis wear vanilla apparel instead. Apparel research is also removed. If you want to keep the Vivi apparel, the removal can be turned off in the Vanilla Expanded Framework mod settings; the apparel then requires Complex Clothing research instead.
 
 [b]Buildings & Architect Menu[/b]
 All Vivi buildings, furniture, floors, and traps are moved into the standard vanilla architect tabs (Production, Furniture, Security, Structure, Floors, etc.). The custom Vivi architect tab is gone. -> This is mostly because im not a fan of mod specific building categories.
@@ -47,7 +48,7 @@ Also they have the heavy tendency to spawn with parkas, since its neolithic clot
 
 In addition with the genes added to offset the met costs the vivi are overall worse fighters than before. Especially in melee.
 
-They behave more like actual colonists. Meaning they care about rooms (solvable by ideology), family ties and probably romance too. I haven't decided how to solve this if at all. Probably another gene for something like vivi mentality but its already difficult enough to offset the met costs of the existing genes. Open for suggestions.
+They behave more like actual colonists. Meaning they care about rooms (solvable by ideology) and probably romance too. Family ties are mostly taken care of by the Hive Mind gene. Open for suggestions.
 
 [h2]Credits[/h2]
 gguake and engu for the Vivi mod. Thanks a lot for very cool mechanics.

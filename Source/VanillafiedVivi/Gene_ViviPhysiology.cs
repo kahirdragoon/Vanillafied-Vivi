@@ -25,6 +25,8 @@ namespace VanillafiedVivi
             {
                 var speed = PawnUtility.BodyResourceGrowthSpeed(pawn)
                     * pawn.health.capacities.GetLevel(PawnCapacityDefOf.BloodPumping);
+                if (pawn.health.hediffSet.HasHediff(VVHediffDefOf.VV_ArchiteGermlineImprint))
+                    speed *= Hediff_ArchiteGermlineImprint.EggProgressFactor;
                 return Mathf.Clamp01(speed / EggProgressDays);
             }
         }
@@ -61,7 +63,9 @@ namespace VanillafiedVivi
 
         private void ApplyGeneticInstability()
         {
-            if (!pawn.IsNestedHashIntervalTick(60, GeneticInstabilityCheckInterval))
+            // Called every tick, so a plain interval check: IsNestedHashIntervalTick stays true for 60
+            // consecutive ticks and is only meant for callers that already run every 60 ticks.
+            if (!pawn.IsHashIntervalTick(GeneticInstabilityCheckInterval))
                 return;
             if (!Rand.Chance(0.02f))
                 return;
@@ -74,6 +78,7 @@ namespace VanillafiedVivi
                 if (part != null && !pawn.health.hediffSet.HasHediff(VVVDefOf.VV_GeneticUnstability))
                 {
                     pawn.health.AddHediff(HediffMaker.MakeHediff(VVVDefOf.VV_GeneticUnstability, pawn, part));
+                    pawn.GetCompVivi()?.ResetGeneInheritanceGenerations();
                     Find.LetterStack.ReceiveLetter(
                         "VVV_GeneticUnstableLabel".Translate(),
                         "VVV_GeneticUnstableLetter".Translate(pawn.Named("PAWN")).AdjustedFor(pawn),
@@ -99,8 +104,17 @@ namespace VanillafiedVivi
                         d.endogeneCategory != EndogeneCategory.HairColor &&
                         d.endogeneCategory != EndogeneCategory.Head &&
                         d.endogeneCategory != EndogeneCategory.Jaw &&
-                        d.defName != "VV_ViviPhysiology")
+                        d.defName != "VVV_ViviPhysiology")
+                    .Distinct()
                     .ToList();
+
+                // Mirrors CompViviEggLayer.ProduceEgg: genes passed down over generations inherit more reliably,
+                // and an archite germline imprint adds archite genes to the egg.
+                var compVivi = pawn.GetCompVivi();
+                hatcher.parentGeneInheritanceGenerations = hatcher.parentXenogenes
+                    .ToDictionary(d => d, d => compVivi?.GetGeneInheritanceGeneration(d) ?? 1);
+                (pawn.health.hediffSet.GetFirstHediffOfDef(VVHediffDefOf.VV_ArchiteGermlineImprint) as Hediff_ArchiteGermlineImprint)
+                    ?.Notify_EggProduced(hatcher);
                 return egg;
             }
             finally

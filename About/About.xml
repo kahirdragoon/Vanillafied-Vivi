@@ -5,52 +5,58 @@
     <packageId>kahirDragoon.vanillafiedVivi</packageId>
     <supportedVersions>
         <li>1.6</li>
+        <li>1.7</li>
     </supportedVersions>
-    <description>Removes the optical changes made to the vivi and the race specific appearel and uses normal clothes and genes instead.
+    <description>Removes the visual changes made to Vivis and their race-specific apparel: Vivis become humans with the Vivi xenotype and use normal clothes and genes instead.
 
 Content:
 
 Race / Pawns:
-- Vivi pawnkind race changed to Human for full visual and mod compatibility
-- Removed all Vivi-specific head types and hair defs; Vivis now use vanilla heads and hair
-- Apparel tags updated per pawnkind: Neolithic/Medieval for civilians, MedievalMilitary for guards, Royal/RoyalTier2 for royals (requires Royalty DLC)
-- Combat power rebalanced for guard, firefighter, sniper, and royal pawnkinds
+- Vivi pawnkinds use the Human race for full visual and mod compatibility
+- Removed all Vivi-specific head types and hair; Vivis use vanilla heads and hair
+- Apparel tags updated per pawnkind: Neolithic/Medieval for civilians, MedievalMilitary for guards, Royal/RoyalTier2 for royals (requires Royalty)
+- Combat power rebalanced for guard, firefighter, sniper and royal pawnkinds
 
-Xenotype (VV_Vivi):
-- Added vanilla genes: quick movement, heat tolerance, cold weakness, dull psychic ability, thin body type
-- Replaced weak melee penalty with terrible melee penalty (balance for metabolic efficiency)
-- Added custom genes: VVV_HoneyGatherer, VVV_CosmeticWings, VVV_CosmeticAntennae, VVV_ViviPhysiology
+Xenotype (Vivi):
+- Added vanilla genes: weak immunity, slow wound healing, fast runner, thin body, psychically dull, poor intellectual, heat tolerant
+- Added custom genes: vivi physiology, honey gatherer, vivi wings, vivi antennae, hive mind, vivi cream maker
 
 Custom Genes:
-- Honey Gatherer: bonus stats for honey and magic plant gathering
-- Cosmetic Wings: cosmetic wings with Vivi flight animations (visual only, no true flight)
-- Vivi Physiology: royal Vivi egg-laying cycle (15-day), progress bar gizmo, forces female, enables Royal Jelly need
-- Cream Maker: marker gene that unlocks the Vivicream production recipe
-- Hive Mind: disables and shortens specific thoughts
+- Vivi Physiology: the core Vivi gene. Royal jelly need, becoming a royal Vivi, egg laying for royals (15-day cycle with a progress gizmo), always female, looks slightly smaller. Xenogerm side effects can make the carrier genetically unstable
+- Honey Gatherer: bonus stats for gathering honey and from magic plants
+- Vivi Wings: Vivi wings with flight animations; short flights, and always flies while drafted
+- Vivi Antennae: purely cosmetic
+- Hive Mind: no thoughts about disturbed sleep, crying babies or the death and loss of most relatives; grief for daughters and close friends is shorter
+- Vivi Cream Maker: unlocks the Vivicream production recipe
 
 Apparel:
-- Removed all Vivi-specific apparel (female garments, hats, guard uniform/helmet, winter cape, guardian coat, children's wear)
-- Removed fake and bionic antenna/wing implants and their surgical recipes
-- Vivis now wear vanilla apparel (Neolithic and Medieval tags); the faction is medieval tech so consider adding a medieval clothing mod for more variety
+- Removed all Vivi-specific apparel (garments, hats, guard uniform/helmet, winter cape, guardian coat, children's wear, crown). Can be turned off in the Vanilla Expanded Framework mod settings
+- Removed fake and bionic antenna/wing implants and their surgeries
+- Vivis wear vanilla apparel (Neolithic and Medieval tags); the faction is medieval tech so consider adding a medieval clothing mod for more variety
 
 Architect Menu / Buildings:
-- Moved all Vivi buildings, furniture, floors, and traps into standard vanilla architect tabs (Production, Furniture, Misc, Security, Structure, Floors)
-- Removed the custom VV_Bulidings architect tab
-- FortifyHoneycombWall designator added to both Orders and Structure menus
+- Moved all Vivi buildings, furniture, floors and traps into the standard vanilla architect tabs (Production, Furniture, Misc, Security, Structure, Floors)
+- Removed the custom Vivi architect tab
+- Fortify honeycomb wall designator added to the Orders and Structure menus
 
 Faction / Culture:
-- VV_ViviFederation patched with proper backstory filters (settler, combat, firefighter, sniper)
-- Vivi culture updated to use vanilla short/long hair instead of Vivi-exclusive styles
-- RPEF race constraints removed from backstories and the VV_RoyalVivi hediff so they work on Human pawns
+- Vivi Federation patched with proper backstory filters (settler, combat, firefighter, sniper)
+- Vivi culture uses vanilla short/long hair instead of Vivi-exclusive styles
+- Race restrictions removed from Vivi backstories, royal status, weapons and consumables so they work on Human pawns; royal Vivis keep their heart attack immunity
 
 Recipes / Research:
-- Vivicream production gated to pawns with VVV_CreamMaker gene instead of a race check
-- Vivi apparel research project removed (VV_Apparels); VV_AdvancedApparels prerequisites cleared
+- Vivicream production requires the vivi cream maker gene instead of the Vivi race
+- Vivi apparel research projects removed; if you keep the Vivi apparel, it requires Complex Clothing instead
+- Glider wing implant surgery available for all humans
+- Archite germline imprint surgery available for royal Vivis
 
 Compatibility:
-- CompVivi and CompViviHolder added to the Human ThingDef so normalized Vivis can use the Everflower plant system
-- RPEF constraints removed from the VV_Vivi xenotype so it can be applied to Human pawns
-
+- Vivi mechanics (Everflower including teleporting it, royal status, egg laying, archite germline imprint, gene inheritance across generations) work on Human pawns with the vivi physiology gene, including non-Vivis given the gene
+- Baby and child Vivis can sleep in an empty Vivi hatchery, just like with the Vivi race
+- Vivis from other factions get their random gene again, and so do starting Vivis if that option is on in the Vivi Race mod settings
+- Vivi weapons and combat hormone jelly can be used by any human; the learning boost from Vivi food still only lasts for Vivi children
+- Vivi-only behaviour from the Vivi Race mod (body type when growing up, hornet swarms, Everflower, sibling rules, extra food capacity from gene metabolism, continuous eating, no gene implanter gene and more) only applies to actual Vivis, not to every human
+- Race restrictions removed from the Vivi xenotype so it can be applied to Human pawns
     </description>
     <modDependencies>
         <li>
@@ -63,6 +69,10 @@ Compatibility:
 			<displayName>Vanilla Expanded Framework</displayName>
 			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2023507013</steamWorkshopUrl>
 			<downloadUrl>https://github.com/Vanilla-Expanded/VanillaExpandedFramework</downloadUrl>
+		</li>
+		<li>
+			<packageId>Ludeon.RimWorld.Biotech</packageId>
+			<displayName>Biotech</displayName>
 		</li>
     </modDependencies>
     <loadAfter>
